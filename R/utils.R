@@ -30,6 +30,11 @@ modify_query <- function(qry) {
 assert_geoarea <- function(geoarea) {
   areas <- sdg_geoareas()[["geoAreaCode"]]
   if (!(geoarea %in% areas)) {
-    stop(sprintf("%s is not a valid geoAreaCode", geoarea))
+    stop(sprintf("%s is not a valid geoAreaCode", geoarea), call. = FALSE)
   }
 }
+
+# Importing the pipe operator
+#' @importFrom dplyr %>%
+NULL
+
