@@ -1,28 +1,26 @@
 #' @noRd
-unnest_goal_tree <- function(df) {
+unnest_data_tree <- function(df) {
   df %>%
-    rename_geoarea("goal") %>%
-    select_geoarea() %>%
+    rename_select("goal") %>%
+    dplyr::mutate(targets = purrr::map(targets, select_nest)) %>%
     tidyr::unnest("targets") %>%
-    rename_geoarea("target") %>%
-    select_geoarea() %>%
+    rename_select("target") %>%
+    dplyr::mutate(indicators = purrr::map(indicators, select_nest)) %>%
     tidyr::unnest("indicators") %>%
-    rename_geoarea("indicator") %>%
-    select_geoarea() %>%
+    rename_select("indicator") %>%
+    dplyr::mutate(series = purrr::map(series, select_nest)) %>%
     tidyr::unnest("series") %>%
-    dplyr::select(dplyr::contains("_"), release:description) %>%
-    dplyr::rename_at(dplyr::vars(release:description),
-                     ~ paste0("series_", .x)) %>%
+    rename_select("series") %>%
     dplyr::ungroup()
 }
 
-parse_goal_tree <- function(df, returns) {
+parse_data_tree <- function(df, returns) {
   assert_returns(returns)
   if (returns %in% c("all", "series")) {
     return(df)
   }
 
-  df <- dplyr::group_by(df, dplyr::across(c(goal_code:indicator_description))) %>%
+  df <- dplyr::group_by(df, dplyr::across(c(goal:indicator_description))) %>%
     dplyr::summarise(series_count = dplyr::n()) %>%
     dplyr::ungroup()
 
@@ -30,7 +28,7 @@ parse_goal_tree <- function(df, returns) {
     return(df)
   }
 
-  df <- dplyr::group_by(df, dplyr::across(c(goal_code:target_description))) %>%
+  df <- dplyr::group_by(df, dplyr::across(c(goal:target_description))) %>%
     dplyr::summarize(indicator_count = dplyr::n(),
                      series_count = sum(series_count)) %>%
     dplyr::ungroup()
@@ -39,7 +37,7 @@ parse_goal_tree <- function(df, returns) {
     return(df)
   }
 
-  dplyr::group_by(df, dplyr::across(c(goal_code:goal_description))) %>%
+  dplyr::group_by(df, dplyr::across(c(goal:goal_description))) %>%
     dplyr::summarize(target_count = dplyr::n(),
                      indicator_count = sum(indicator_count),
                      series_count = sum(series_count)) %>%
@@ -55,3 +53,37 @@ assert_returns <- function(returns) {
   }
 }
 
+#' @noRd
+rename_nested <- function(df, prefix) {
+  dplyr::rename_with(df,
+                     ~ paste0(prefix, "_", .x),
+                     dplyr::any_of(renamed_vars())) %>%
+    dplyr::select(-where(is.logical)) %>%
+    dplyr::rename({{prefix}} := code)
+}
+
+#' @noRd
+select_vars <- function(df) {
+  dplyr::select(df,
+                dplyr::matches(paste(renamed_vars(), key_vars(), sep = "|", collapse = "|")))
+}
+
+rename_select <- function(df, prefix) {
+  df <- rename_nested(df, prefix)
+  select_vars(df)
+}
+
+#' @noRd
+renamed_vars <- function() c("description", "title", "tier", "release")
+
+#' @noRd
+key_vars <- function() c("goal", "target", "indicator", "series")
+
+#' @noRd
+select_nest <- function(df) {
+  if (!is.data.frame(df)) {
+    NA
+  } else {
+    dplyr::select(df, dplyr::any_of(c(renamed_vars(), "code", "targets", "indicators", "series")))
+  }
+}

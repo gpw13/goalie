@@ -15,4 +15,5 @@ Imports:
     jsonlite,
     tibble,
     tidyr,
-    dplyr
+    dplyr,
+    purrr

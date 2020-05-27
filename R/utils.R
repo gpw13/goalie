@@ -1,6 +1,5 @@
 #' @noRd
-sdg_api <- function(path = NULL, query = NULL) {
-  #assert_query(query)
+sdg_api <- function(path = NULL, query = NULL, type = "GET") {
   query <- modify_query(query)
   url <- httr::modify_url("https://unstats.un.org", path = paste0("SDGAPI/v1/sdg/", path), query = query)
 
@@ -24,14 +23,6 @@ sdg_api <- function(path = NULL, query = NULL) {
 #' @noRd
 modify_query <- function(qry) {
   gsub(" ", "%20", qry)
-}
-
-#' @noRd
-assert_geoarea <- function(geoarea) {
-  areas <- sdg_geoareas()[["geoAreaCode"]]
-  if (!(geoarea %in% areas)) {
-    stop(sprintf("%s is not a valid geoAreaCode", geoarea), call. = FALSE)
-  }
 }
 
 # Importing the pipe operator
