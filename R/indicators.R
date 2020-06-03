@@ -1,5 +1,5 @@
 sdg_indicators <- function(goals = NULL, targets = NULL) {
-  df <- dplyr::as_tibble(sdg_api("Indicator/List"))
+  df <- dplyr::as_tibble(sdg_GET("Indicator/List"))
   df <- rename_select(df, "indicator") %>%
     dplyr::select(-series)
   if (!is.null(targets)) {

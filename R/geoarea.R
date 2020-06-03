@@ -10,7 +10,7 @@ sdg_geoareas <- function(goal = NULL, indicator = NULL, series = NULL) {
   } else {
     path <- "GeoArea/List"
   }
-  dplyr::as_tibble(sdg_api(path))
+  dplyr::as_tibble(sdg_GET(path))
 }
 
 sdg_geoarea_data <- function(area_code = NULL, area_name = NULL, returns = "all") {
@@ -22,7 +22,7 @@ sdg_geoarea_data <- function(area_code = NULL, area_name = NULL, returns = "all"
     stop("Must provide either area_code or area_name.", call. = F)
   }
 
-  resp <- dplyr::as_tibble(sdg_api(path = paste0("GeoArea/", area_code, "/List")))
+  resp <- dplyr::as_tibble(sdg_GET(path = paste0("GeoArea/", area_code, "/List")))
   resp <- unnest_data_tree(resp)
   parse_data_tree(resp, returns)
 }

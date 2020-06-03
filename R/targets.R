@@ -1,5 +1,5 @@
 sdg_targets <- function(goals = NULL) {
-  df <- dplyr::as_tibble(sdg_api("Target/List"))
+  df <- dplyr::as_tibble(sdg_GET("Target/List"))
   rename_select(df, "target")
 }
 

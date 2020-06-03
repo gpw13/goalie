@@ -1,5 +1,5 @@
 #' @noRd
-sdg_api <- function(path = NULL, query = NULL, type = "GET") {
+sdg_GET <- function(path = NULL, query = NULL) {
   query <- modify_query(query)
   url <- httr::modify_url("https://unstats.un.org", path = paste0("SDGAPI/v1/sdg/", path), query = query)
 
@@ -19,6 +19,28 @@ sdg_api <- function(path = NULL, query = NULL, type = "GET") {
   }
   jsonlite::fromJSON(httr::content(resp, "text"))
 }
+
+#' @noRd
+sdg_POST <- function(path = NULL, body = NULL, type = "text/csv", encoding = "UTF-8") {
+  url <- httr::modify_url("https://unstats.un.org", path = paste0("SDGAPI/v1/sdg/", path))
+
+  resp <- httr::POST(url, body = body)
+  if (httr::http_type(resp) != "application/octet-stream") {
+    stop("API did not return application/octet-stream", call. = FALSE)
+  }
+
+  if (httr::http_error(resp)) {
+    stop(
+      sprintf(
+        "SDG API request failed with status %s",
+        httr::status_code(resp)
+      ),
+      call. = FALSE
+    )
+  }
+  httr::content(resp, type = type, encoding = encoding)
+}
+
 
 #' @noRd
 modify_query <- function(qry) {

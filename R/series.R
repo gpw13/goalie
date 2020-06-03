@@ -4,7 +4,7 @@ sdg_series <- function(all_releases = TRUE) {
   } else {
     query <- "allreleases=false"
   }
-  resp <- dplyr::as_tibble(sdg_api("Series/List", query))
+  resp <- dplyr::as_tibble(sdg_GET("Series/List", query))
   dplyr::select(resp, release:description)
 }
 
