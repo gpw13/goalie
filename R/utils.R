@@ -47,6 +47,11 @@ modify_query <- function(qry) {
   gsub(" ", "%20", qry)
 }
 
+#' @noRd
+assert_single <- function(x) {
+  stop()
+}
+
 # Importing the pipe operator
 #' @importFrom dplyr %>%
 NULL

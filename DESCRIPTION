@@ -16,4 +16,5 @@ Imports:
     tibble,
     tidyr,
     dplyr,
-    purrr
+    purrr,
+    assertthat (>= 0.2.1)

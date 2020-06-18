@@ -1,3 +1,20 @@
+#' @title Load available indicators from the UNSD SDG database
+#'
+#' @description \code{sdg_indicators()} provides a data frame of all available
+#'   \href{https://unstats.un.org/sdgs/indicators/database/}{indicators in the
+#'   UNSD SDG database}.
+#'
+#' @param goals Numeric or character vector of values between 1 and 17
+#'   corresponding to the
+#'   \href{https://www.un.org/development/desa/disabilities/envision2030.html}{17
+#'   SDGs}.
+#' @param targets Character vector of
+#'   \href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework
+#'   after 2020 review_Eng.pdf}{SDG target codes} of the form "#.#".
+#'
+#' @return A data frame.
+#'
+#' @export
 sdg_indicators <- function(goals = NULL, targets = NULL) {
   df <- dplyr::as_tibble(sdg_GET("Indicator/List"))
   df <- rename_select(df, "indicator") %>%
@@ -12,10 +29,11 @@ sdg_indicators <- function(goals = NULL, targets = NULL) {
   df
 }
 
+#' @noRd
 assert_indicators <- function(indicators) {
   valid_indicators <- indicators %in% sdg_indicators()[["indicator"]]
   if (!all(valid_indicators)) {
-    stop(sprintf("%s are not valid indicator(s) the SDG database. Use sdg_targets() to get a data frame of all valid indicators.",
+    stop(sprintf("%s are not valid indicator(s) in the UNSD SDG database. Use sdg_indicators() to get a data frame of all valid indicators.",
                  paste(indicators[!valid_indicators], collapse = ", ")))
   }
 }
