@@ -17,7 +17,8 @@ sdg_GET <- function(path = NULL, query = NULL) {
       call. = FALSE
     )
   }
-  jsonlite::fromJSON(httr::content(resp, "text"))
+  df <- jsonlite::fromJSON(httr::content(resp, "text"))
+  dplyr::as_tibble(df)
 }
 
 #' @noRd
@@ -38,7 +39,7 @@ sdg_POST <- function(path = NULL, body = NULL, type = "text/csv", encoding = "UT
       call. = FALSE
     )
   }
-  httr::content(resp, type = type, encoding = encoding)
+  df <- httr::content(resp, type = type, encoding = encoding)
 }
 
 
