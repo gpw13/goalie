@@ -55,7 +55,9 @@ assert_single <- function(x) {
   stop()
 }
 
-# Importing the pipe operator
+# Importing the special operators
 #' @importFrom dplyr %>%
+#' @importFrom rlang :=
+#' @noRd
 NULL
 

@@ -2,7 +2,7 @@ Package: goalie
 Type: Package
 Title: R Client for the Sustainable Development Goals API
 Version: 0.1.0
-Author@R: person("Seth", "Caldwell", email = "caldwellst@gmail.com", role = c("aut", "cre"))
+Authors@R: person("Seth", "Caldwell", email = "caldwellst@gmail.com", role = c("aut", "cre"))
 Description: Provides access to data stored in the Sustainable Development Goals (SDG) API.
 URL: https://unstats.un.org/SDGAPI/swagger/, https://github.com/caldwellst/goalie
 License: GPL-3
@@ -16,5 +16,7 @@ Imports:
     tibble,
     tidyr,
     dplyr,
+    memoise,
+    rlang,
     purrr,
     assertthat (>= 0.2.1)

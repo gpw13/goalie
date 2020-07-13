@@ -40,7 +40,7 @@ sdg_data <- function(series, area_codes = NULL, time_start = NULL, time_end = NU
                                               time_end)))
   suppressMessages(
     readr::type_convert(df) %>%
-      dplyr::filter(rowSums(is.na(.)) != ncol(.))
+      dplyr::filter(rowSums(is.na(.data)) != ncol(.data))
   )
 }
 

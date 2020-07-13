@@ -59,7 +59,7 @@ rename_nested <- function(df, prefix) {
   dplyr::rename_with(df,
                      ~ paste0(prefix, "_", .x),
                      dplyr::any_of(renamed_vars())) %>%
-    dplyr::select(-where(is.logical)) %>%
+    dplyr::select(-dplyr::where(is.logical)) %>%
     dplyr::rename({{prefix}} := code)
 }
 
