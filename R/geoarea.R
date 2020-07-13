@@ -11,11 +11,11 @@
 #'   \href{https://www.un.org/development/desa/disabilities/envision2030.html}{17
 #'   SDGs}.
 #' @param target Character value of one of the
-#'   \href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework
-#'   after 2020 review_Eng.pdf}{SDG target codes} of the form "#.#".
+#'   \href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework after 2020 review_Eng.pdf}{SDG
+#'   target codes} of the form "#.#".
 #' @param indicator Character value of one of the
-#'   \href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework
-#'   after 2020 review_Eng.pdf}{SDG indicator codes} of the form "#.#.#".
+#'   \href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework after 2020 review_Eng.pdf}{SDG
+#'   indicator codes} of the form "#.#.#".
 #' @param series Character value of one of the
 #'   \href{https://unstats.un.org/sdgs/indicators/database/}{SDG series codes}.
 #'

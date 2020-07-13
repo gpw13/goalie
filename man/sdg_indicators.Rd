@@ -13,8 +13,8 @@ corresponding to the
 SDGs}.}
 
 \item{targets}{Character vector of
-\href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework
-after 2020 review_Eng.pdf}{SDG target codes} of the form "#.#".}
+\href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework after 2020 review_Eng.pdf}{SDG
+target codes} of the form "#.#".}
 }
 \value{
 A data frame.
