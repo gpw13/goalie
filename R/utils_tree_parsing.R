@@ -14,6 +14,7 @@ unnest_data_tree <- function(df) {
     dplyr::ungroup()
 }
 
+#' @noRd
 parse_data_tree <- function(df, returns) {
   assert_returns(returns)
   if (returns %in% c("all", "series")) {

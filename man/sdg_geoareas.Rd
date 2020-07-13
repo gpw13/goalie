@@ -2,23 +2,26 @@
 % Please edit documentation in R/geoarea.R
 \name{sdg_geoareas}
 \alias{sdg_geoareas}
-\title{Load the geoArea codes and names reference table from the UNSD SDG
-database}
+\title{Load the geoArea reference table from the UNSD SDG database}
 \usage{
 sdg_geoareas(goal = NULL, target = NULL, indicator = NULL, series = NULL)
 }
 \arguments{
-\item{series}{Character vector of one of the
-\href{https://unstats.un.org/sdgs/indicators/database/}{SDG series codes}.}
-
-\item{goals}{Numeric or character vector between 1 and 17 corresponding to
+\item{goal}{Numeric or character value between 1 and 17 corresponding to
 one of the
 \href{https://www.un.org/development/desa/disabilities/envision2030.html}{17
 SDGs}.}
 
-\item{targets}{Character vector of one of the
+\item{target}{Character value of one of the
 \href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework
 after 2020 review_Eng.pdf}{SDG target codes} of the form "#.#".}
+
+\item{indicator}{Character value of one of the
+\href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework
+after 2020 review_Eng.pdf}{SDG indicator codes} of the form "#.#.#".}
+
+\item{series}{Character value of one of the
+\href{https://unstats.un.org/sdgs/indicators/database/}{SDG series codes}.}
 }
 \value{
 A data frame.
@@ -28,5 +31,5 @@ A data frame.
 \href{https://unstats.un.org/unsd/methodology/m49/}{M49 codes} and names.
 If all arguments are NULL, returns all possible values, but if \code{goal},
 \code{indicator}, or \code{series} specified, returns geoArea codes and names
-available for that subset
+available for that subset of the SDGs.
 }

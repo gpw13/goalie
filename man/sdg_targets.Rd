@@ -4,7 +4,7 @@
 \alias{sdg_targets}
 \title{Load available targets from the UNSD SDG database}
 \usage{
-sdg_targets(goals = NULL)
+sdg_targets(goals = 1:17)
 }
 \arguments{
 \item{goals}{Numeric or character vector of values between 1 and 17

@@ -39,7 +39,10 @@ sdg_POST <- function(path = NULL, body = NULL, type = "text/csv", encoding = "UT
       call. = FALSE
     )
   }
-  df <- httr::content(resp, type = type, encoding = encoding)
+  suppressWarnings(suppressMessages(
+    httr::content(resp, type = type, encoding = encoding, col_types = cols(.default = "c"))) %>%
+    filter(rowSums(is.na(.)) != ncol(.)
+  ))
 }
 
 

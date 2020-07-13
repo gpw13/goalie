@@ -12,16 +12,20 @@
 #' @return A data frame.
 #'
 #' @export
-sdg_targets <- function(goals = NULL) {
-  df <- dplyr::as_tibble(sdg_GET("Target/List"))
-  rename_select(df, "target")
+sdg_targets <- function(goals = 1:17) {
+  assert_goals(goals)
+  df <- sdg_GET("Target/List")
+  df <- rename_select(df, "target")
+  dplyr::filter(df, goal %in% goals)
 }
 
 #' @noRd
-assert_targets <- function(targets) {
+assert_targets <- function(targets, len = length(targets)) {
   valid_targets <- targets %in% sdg_targets()[["target"]]
   if (!all(valid_targets)) {
     stop(sprintf("%s are not valid target(s) in the UNSD SDG database. Use sdg_targets() to get a data frame of all valid targets.",
                  paste(targets[!valid_targets], collapse = ", ")))
+  } else if (len != length(targets)) {
+    stop(sprintf("targets must be of length %s, not %s", len, length(targets)), call. = FALSE)
   }
 }
