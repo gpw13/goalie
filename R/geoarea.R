@@ -92,9 +92,10 @@ cnvrt_name_to_code <- function(area_name) {
 }
 
 #' @noRd
-assert_geoarea <- function(geoarea) {
+assert_geoarea <- function(geoareas) {
   areas <- sdg_geoareas()[["geoAreaCode"]]
-  if (!(geoarea %in% areas)) {
-    stop(sprintf("%s is not a valid geoAreaCode", geoarea), call. = FALSE)
+  valid_areas <- geoareas %in% areas
+  if (!all(valid_areas)) {
+    stop(sprintf("%s(s) are not valid geoAreaCodes", paste(geoareas, collapse = ", ")), call. = FALSE)
   }
 }

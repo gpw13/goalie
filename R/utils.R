@@ -39,10 +39,9 @@ sdg_POST <- function(path = NULL, body = NULL, type = "text/csv", encoding = "UT
       call. = FALSE
     )
   }
-  suppressWarnings(suppressMessages(
-    httr::content(resp, type = type, encoding = encoding, col_types = cols(.default = "c"))) %>%
-    filter(rowSums(is.na(.)) != ncol(.)
-  ))
+  suppressWarnings(
+    httr::content(resp, type = type, encoding = encoding, col_types = readr::cols(.default = "c"))
+  )
 }
 
 

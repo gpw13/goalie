@@ -4,11 +4,20 @@
 \alias{sdg_data}
 \title{Load data from UNSD SDG database}
 \usage{
-sdg_data(series)
+sdg_data(series, area_codes = NULL, time_start = NULL, time_end = NULL)
 }
 \arguments{
 \item{series}{Character vector of
 \href{https://unstats.un.org/sdgs/indicators/database/}{SDG series codes}.}
+
+\item{area_codes}{\href{https://unstats.un.org/unsd/methodology/m49/}{M49 codes}
+for specific geoAreas.}
+
+\item{time_start}{Numeric value indicating the starting (inclusive) year of
+the series.}
+
+\item{time_end}{Numeric value indicating the ending (inclusive) year of
+the series.}
 }
 \value{
 A data frame.
