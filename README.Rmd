@@ -16,6 +16,10 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 # goalie
 
+<!-- badges: start -->
+  [![Travis build status](https://travis-ci.com/caldwellst/goalie.svg?branch=master)](https://travis-ci.com/caldwellst/goalie)
+<!-- badges: end -->
+
 ## Overview
 
 goalie is an R package designed to provide a simple interface for extracting data from the United Nations Statistics Divisions (UNSD) [Sustainable Development Goals (SDG) API](https://unstats.un.org/SDGAPI/swagger/). The package allows for exploration of SDG data contained within, including available dimensions/attributes and geographic coverage, while providing a simple tool to extract all data quickly into R.

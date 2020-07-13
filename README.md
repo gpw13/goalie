@@ -3,6 +3,12 @@
 
 # goalie
 
+<!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.com/caldwellst/goalie.svg?branch=master)](https://travis-ci.com/caldwellst/goalie)
+<!-- badges: end -->
+
 ## Overview
 
 goalie is an R package designed to provide a simple interface for
