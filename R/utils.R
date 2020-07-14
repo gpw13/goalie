@@ -50,14 +50,18 @@ modify_query <- function(qry) {
   gsub(" ", "%20", qry)
 }
 
-#' @noRd
-assert_single <- function(x) {
-  stop()
-}
-
 # Importing the special operators
 #' @importFrom dplyr %>%
 #' @importFrom rlang :=
 #' @noRd
 NULL
+
+#' @noRd
+unsd_column_names <- function(df) {
+  nms <- names(df)
+  nms <- stringr::str_replace_all(nms, "[^A-Za-z_ ]+", "")
+  nms <- stringr::str_replace_all(nms, " ", "_")
+  names(df) <- nms
+  df
+}
 

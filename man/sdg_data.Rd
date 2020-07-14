@@ -4,7 +4,13 @@
 \alias{sdg_data}
 \title{Load data from UNSD SDG database}
 \usage{
-sdg_data(series, area_codes = NULL, time_start = NULL, time_end = NULL)
+sdg_data(
+  series,
+  area_codes = NULL,
+  time_start = NULL,
+  time_end = NULL,
+  clean_names = TRUE
+)
 }
 \arguments{
 \item{series}{Character vector of
@@ -18,11 +24,15 @@ the series.}
 
 \item{time_end}{Numeric value indicating the ending (inclusive) year of
 the series.}
+
+\item{clean_names}{Logical value indicating whether or not to clean up names
+of the returned data frame. If \code{TRUE}, the default, spaces are replaced
+with underscores and all other non-alphabetic characters are removed.}
 }
 \value{
 A data frame.
 }
 \description{
 \code{sdg_data()} provides a data frame of all data for specified series
-in the UNSD SDG database
+in the UNSD SDG database.
 }
