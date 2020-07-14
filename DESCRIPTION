@@ -18,6 +18,7 @@ Imports:
     dplyr,
     memoise,
     rlang,
+    stringr,
     readr,
     purrr,
     assertthat (>= 0.2.1)
