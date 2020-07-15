@@ -82,7 +82,7 @@ sdg_data("SI_POV_DAY1")
 #> # … with 2,048 more rows, and 13 more variables: TimePeriod <dbl>, Value <dbl>,
 #> #   Time_Detail <dbl>, TimeCoverage <lgl>, UpperBound <lgl>, LowerBound <lgl>,
 #> #   BasePeriod <lgl>, Source <chr>, GeoInfoUrl <lgl>, FootNote <chr>,
-#> #   `[Nature]` <chr>, `[Reporting Type]` <chr>, `[Units]` <chr>
+#> #   Nature <chr>, Reporting_Type <chr>, Units <chr>
 ```
 
 From here, standard methods of data manipulation (e.g. base R, the
@@ -160,8 +160,8 @@ sdg_data(c("SI_POV_DAY1", "SI_POV_EMP1", "SI_POV_NAHC"))
 #> # … with 12,951 more rows, and 16 more variables: TimePeriod <dbl>,
 #> #   Value <dbl>, Time_Detail <dbl>, TimeCoverage <lgl>, UpperBound <lgl>,
 #> #   LowerBound <lgl>, BasePeriod <lgl>, Source <chr>, GeoInfoUrl <lgl>,
-#> #   FootNote <chr>, `[Age]` <chr>, `[Location]` <chr>, `[Nature]` <chr>,
-#> #   `[Reporting Type]` <chr>, `[Sex]` <chr>, `[Units]` <chr>
+#> #   FootNote <chr>, Age <chr>, Location <chr>, Nature <chr>,
+#> #   Reporting_Type <chr>, Sex <chr>, Units <chr>
 ```
 
 Of course, the reality is that it’s likely easier for us to work outside
@@ -190,8 +190,8 @@ sdg_geoarea_data(24) %>%
 #> # … with 5 more rows, and 16 more variables: TimePeriod <dbl>, Value <dbl>,
 #> #   Time_Detail <dbl>, TimeCoverage <lgl>, UpperBound <lgl>, LowerBound <lgl>,
 #> #   BasePeriod <lgl>, Source <chr>, GeoInfoUrl <lgl>, FootNote <chr>,
-#> #   `[Age]` <chr>, `[Location]` <lgl>, `[Nature]` <chr>, `[Reporting
-#> #   Type]` <chr>, `[Sex]` <chr>, `[Units]` <chr>
+#> #   Age <chr>, Location <lgl>, Nature <chr>, Reporting_Type <chr>, Sex <chr>,
+#> #   Units <chr>
 ```
 
 And once we have that data, we can then filter, explore, and analyze the
