@@ -21,4 +21,5 @@ Imports:
     stringr,
     readr,
     purrr,
-    assertthat (>= 0.2.1)
+    assertthat (>= 0.2.1),
+    tidyselect

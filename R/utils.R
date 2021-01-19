@@ -50,12 +50,6 @@ modify_query <- function(qry) {
   gsub(" ", "%20", qry)
 }
 
-# Importing the special operators
-#' @importFrom dplyr %>%
-#' @importFrom rlang :=
-#' @noRd
-NULL
-
 #' @noRd
 unsd_column_names <- function(df) {
   nms <- names(df)

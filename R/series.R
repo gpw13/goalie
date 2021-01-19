@@ -18,7 +18,7 @@ sdg_series <- function(all_releases = FALSE) {
     query <- "allreleases=false"
   }
   resp <- sdg_GET("Series/List", query)
-  dplyr::select(resp, release:description)
+  dplyr::select(resp, "release":"description")
 }
 
 #' @noRd

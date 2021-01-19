@@ -16,7 +16,7 @@ sdg_targets <- function(goals = 1:17) {
   assert_goals(goals)
   df <- sdg_GET("Target/List")
   df <- rename_select(df, "target")
-  dplyr::filter(df, goal %in% goals)
+  dplyr::filter(df, .data[["goal"]] %in% goals)
 }
 
 #' @noRd

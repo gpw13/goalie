@@ -18,13 +18,13 @@
 sdg_indicators <- function(goals = NULL, targets = NULL) {
   df <- sdg_GET("Indicator/List")
   df <- rename_select(df, "indicator") %>%
-    dplyr::select(-series)
+    dplyr::select(-"series")
   if (!is.null(targets)) {
     assert_targets(targets)
-    df <- dplyr::filter(df, target %in% targets)
+    df <- dplyr::filter(df, .data[["target"]] %in% targets)
   } else if (!is.null(goals)) {
     assert_goals(goals)
-    df <- dplyr::filter(df, goal %in% goals)
+    df <- dplyr::filter(df, .data[["goal"]] %in% goals)
   }
   df
 }
