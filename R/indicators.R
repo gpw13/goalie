@@ -9,7 +9,7 @@
 #'   \href{https://www.un.org/development/desa/disabilities/envision2030.html}{17
 #'   SDGs}.
 #' @param targets Character vector of
-#'   \href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework after 2020 review_Eng.pdf}{SDG
+#'   \href{https://unstats.un.org/sdgs/indicators/Global%20Indicator%20Framework%20after%202020%20review_Eng.pdf}{SDG
 #'   target codes} of the form "#.#".
 #'
 #' @return A data frame.
