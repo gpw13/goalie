@@ -45,7 +45,7 @@ sdg_data <- function(series, area_codes = NULL, time_start = NULL, time_end = NU
                                               time_end)))
   suppressMessages(
     df <- readr::type_convert(df) %>%
-      dplyr::filter(rowSums(is.na(.data)) != ncol(.data))
+      dplyr::filter(rowSums(is.na(.)) != ncol(.))
   )
 
   if (clean_names) df <- unsd_column_names(df)

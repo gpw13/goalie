@@ -13,11 +13,11 @@ one of the
 SDGs}.}
 
 \item{target}{Character value of one of the
-\href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework after 2020 review_Eng.pdf}{SDG
+\href{https://unstats.un.org/sdgs/indicators/Global\%20Indicator\%20Framework\%20after\%202020\%20review_Eng.pdf}{SDG
 target codes} of the form "#.#".}
 
 \item{indicator}{Character value of one of the
-\href{https://unstats.un.org/sdgs/indicators/Global Indicator Framework after 2020 review_Eng.pdf}{SDG
+\href{https://unstats.un.org/sdgs/indicators/Global\%20Indicator\%20Framework\%20after\%202020\%20review_Eng.pdf}{SDG
 indicator codes} of the form "#.#.#".}
 
 \item{series}{Character value of one of the
