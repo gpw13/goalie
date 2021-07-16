@@ -23,3 +23,7 @@ Imports:
     purrr,
     assertthat (>= 0.2.1),
     tidyselect
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,13 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# goalie <a href='https://github.com/caldwellst/goalie'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# goalie <a href='https://github.com/gpw13/goalie'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.com/caldwellst/goalie.svg?branch=master)](https://travis-ci.com/caldwellst/goalie)
-[![R-CMD-check](https://github.com/caldwellst/goalie/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/goalie/actions)
+[![R-CMD-check](https://github.com/gpw13/goalie/workflows/R-CMD-check/badge.svg)](https://github.com/gpw13/goalie/actions)
 <!-- badges: end -->
 
 ## Overview
@@ -40,10 +38,9 @@ The interface is designed to be as simple as possible, only requiring
 input of the code of an indicator to extract it. However, at request,
 more detailed implementation of the SDG API’s systems can be
 implemented. Please provide any requests through the [Github issues
-page](https://github.com/caldwellst/goalie/issues).
+page](https://github.com/gpw13/goalie/issues).
 
-goalie can be installed using
-`remotes::install_github("caldwellst/goalie")`
+goalie can be installed using `remotes::install_github("gpw13/goalie")`
 
 ## Usage
 
@@ -54,15 +51,15 @@ available in the GHO.
 library(goalie)
 
 sdg_overview()
-#> # A tibble: 10,709 x 12
-#>   goal  goal_title goal_description target_descript… target_title target
-#>   <chr> <chr>      <chr>            <chr>            <chr>        <chr> 
-#> 1 1     End pover… Goal 1 calls fo… By 2030, eradic… By 2030, er… 1.1   
-#> 2 1     End pover… Goal 1 calls fo… By 2030, eradic… By 2030, er… 1.1   
-#> 3 1     End pover… Goal 1 calls fo… By 2030, eradic… By 2030, er… 1.1   
-#> 4 1     End pover… Goal 1 calls fo… By 2030, eradic… By 2030, er… 1.1   
-#> 5 1     End pover… Goal 1 calls fo… By 2030, eradic… By 2030, er… 1.1   
-#> # … with 10,704 more rows, and 6 more variables: indicator_description <chr>,
+#> # A tibble: 14,199 x 12
+#>   goal  goal_title   goal_description   target_description target_title   target
+#>   <chr> <chr>        <chr>              <chr>              <chr>          <chr> 
+#> 1 1     End poverty… Goal 1 calls for … By 2030, eradicat… By 2030, erad… 1.1   
+#> 2 1     End poverty… Goal 1 calls for … By 2030, eradicat… By 2030, erad… 1.1   
+#> 3 1     End poverty… Goal 1 calls for … By 2030, eradicat… By 2030, erad… 1.1   
+#> 4 1     End poverty… Goal 1 calls for … By 2030, eradicat… By 2030, erad… 1.1   
+#> 5 1     End poverty… Goal 1 calls for … By 2030, eradicat… By 2030, erad… 1.1   
+#> # … with 14,194 more rows, and 6 more variables: indicator_description <chr>,
 #> #   indicator_tier <chr>, indicator <chr>, series_description <chr>,
 #> #   series_release <chr>, series <chr>
 ```
@@ -72,18 +69,19 @@ the data frame using `sdg_data()`.
 
 ``` r
 sdg_data("SI_POV_DAY1")
-#> # A tibble: 2,053 x 20
-#>    Goal Target Indicator SeriesCode SeriesDescripti… GeoAreaCode GeoAreaName
-#>   <dbl>  <dbl> <chr>     <chr>      <chr>                  <dbl> <chr>      
-#> 1     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> 2     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> 3     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> 4     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> 5     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> # … with 2,048 more rows, and 13 more variables: TimePeriod <dbl>, Value <dbl>,
+#> # A tibble: 3,033 x 23
+#>    Goal Target Indicator SeriesCode  SeriesDescription   GeoAreaCode GeoAreaName
+#>   <dbl>  <dbl> <chr>     <chr>       <chr>                     <dbl> <chr>      
+#> 1     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> 2     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> 3     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> 4     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> 5     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> # … with 3,028 more rows, and 16 more variables: TimePeriod <dbl>, Value <dbl>,
 #> #   Time_Detail <dbl>, TimeCoverage <lgl>, UpperBound <lgl>, LowerBound <lgl>,
 #> #   BasePeriod <lgl>, Source <chr>, GeoInfoUrl <lgl>, FootNote <chr>,
-#> #   Nature <chr>, Reporting_Type <chr>, Units <chr>
+#> #   Age <lgl>, Location <lgl>, Nature <chr>, Reporting_Type <chr>, Sex <lgl>,
+#> #   Units <chr>
 ```
 
 From here, standard methods of data manipulation (e.g. base R, the
@@ -94,21 +92,28 @@ attributes of `SI_POV_DAY1`, we can easily access that.
 
 ``` r
 sdg_dimensions(series = "SI_POV_DAY1")
-#> # A tibble: 2 x 4
-#>   id             code  description sdmx 
-#>   <chr>          <chr> <chr>       <chr>
-#> 1 Reporting Type N     National    N    
-#> 2 Reporting Type G     Global      G
+#> # A tibble: 142 x 4
+#>   id    code  description        sdmx 
+#>   <chr> <chr> <chr>              <chr>
+#> 1 Age   <1M   under 1 month old  M0   
+#> 2 Age   <1Y   under 1 year old   Y0   
+#> 3 Age   <5Y   under 5 years old  Y0T4 
+#> 4 Age   <15Y  under 15 years old Y0T14
+#> 5 Age   <18Y  under 18 years old Y0T17
+#> # … with 137 more rows
 ```
 
 ``` r
 sdg_attributes(series = "SI_POV_DAY1")
-#> # A tibble: 3 x 4
-#>   id     code    description            sdmx 
-#>   <chr>  <chr>   <chr>                  <chr>
-#> 1 Nature C       Country data           C    
-#> 2 Nature G       Global monitoring data G    
-#> 3 Units  PERCENT Percentage             PT
+#> # A tibble: 8 x 4
+#>   id     code  description            sdmx 
+#>   <chr>  <chr> <chr>                  <chr>
+#> 1 Nature C     Country data           C    
+#> 2 Nature CA    Country adjusted data  CA   
+#> 3 Nature E     Estimated data         E    
+#> 4 Nature G     Global monitoring data G    
+#> 5 Nature M     Modeled data           M    
+#> # … with 3 more rows
 ```
 
 Let’s say we want to get data for a specific country, then we could look
@@ -116,7 +121,7 @@ up the M49 code using the table available through the API.
 
 ``` r
 sdg_geoareas()
-#> # A tibble: 370 x 2
+#> # A tibble: 390 x 2
 #>   geoAreaCode geoAreaName   
 #>   <chr>       <chr>         
 #> 1 4           Afghanistan   
@@ -124,7 +129,7 @@ sdg_geoareas()
 #> 3 8           Albania       
 #> 4 12          Algeria       
 #> 5 16          American Samoa
-#> # … with 365 more rows
+#> # … with 385 more rows
 ```
 
 We can then even check what data is available for a specific country,
@@ -132,15 +137,15 @@ say Angola.
 
 ``` r
 sdg_geoarea_data(24)
-#> # A tibble: 389 x 12
-#>   goal  goal_title goal_description target_descript… target_title target
-#>   <chr> <chr>      <chr>            <chr>            <chr>        <chr> 
-#> 1 1     End pover… Goal 1 calls fo… By 2030, eradic… By 2030, er… 1.1   
-#> 2 1     End pover… Goal 1 calls fo… By 2030, eradic… By 2030, er… 1.1   
-#> 3 1     End pover… Goal 1 calls fo… By 2030, reduce… By 2030, re… 1.2   
-#> 4 1     End pover… Goal 1 calls fo… By 2030, reduce… By 2030, re… 1.2   
-#> 5 1     End pover… Goal 1 calls fo… Implement natio… Implement n… 1.3   
-#> # … with 384 more rows, and 6 more variables: indicator_description <chr>,
+#> # A tibble: 454 x 12
+#>   goal  goal_title   goal_description   target_description target_title   target
+#>   <chr> <chr>        <chr>              <chr>              <chr>          <chr> 
+#> 1 1     End poverty… Goal 1 calls for … By 2030, eradicat… By 2030, erad… 1.1   
+#> 2 1     End poverty… Goal 1 calls for … By 2030, eradicat… By 2030, erad… 1.1   
+#> 3 1     End poverty… Goal 1 calls for … By 2030, reduce a… By 2030, redu… 1.2   
+#> 4 1     End poverty… Goal 1 calls for … By 2030, reduce a… By 2030, redu… 1.2   
+#> 5 1     End poverty… Goal 1 calls for … By 2030, reduce a… By 2030, redu… 1.2   
+#> # … with 449 more rows, and 6 more variables: indicator_description <chr>,
 #> #   indicator_tier <chr>, indicator <chr>, series_description <chr>,
 #> #   series_release <chr>, series <chr>
 ```
@@ -150,15 +155,15 @@ the output data frames already merged together.
 
 ``` r
 sdg_data(c("SI_POV_DAY1", "SI_POV_EMP1", "SI_POV_NAHC"))
-#> # A tibble: 12,956 x 23
-#>    Goal Target Indicator SeriesCode SeriesDescripti… GeoAreaCode GeoAreaName
-#>   <dbl>  <dbl> <chr>     <chr>      <chr>                  <dbl> <chr>      
-#> 1     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> 2     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> 3     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> 4     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> 5     1    1.1 1.1.1     SI_POV_DA… Proportion of p…           1 World      
-#> # … with 12,951 more rows, and 16 more variables: TimePeriod <dbl>,
+#> # A tibble: 27,283 x 23
+#>    Goal Target Indicator SeriesCode  SeriesDescription   GeoAreaCode GeoAreaName
+#>   <dbl>  <dbl> <chr>     <chr>       <chr>                     <dbl> <chr>      
+#> 1     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> 2     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> 3     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> 4     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> 5     1    1.1 1.1.1     SI_POV_DAY1 Proportion of popu…           1 World      
+#> # … with 27,278 more rows, and 16 more variables: TimePeriod <dbl>,
 #> #   Value <dbl>, Time_Detail <dbl>, TimeCoverage <lgl>, UpperBound <lgl>,
 #> #   LowerBound <lgl>, BasePeriod <lgl>, Source <chr>, GeoInfoUrl <lgl>,
 #> #   FootNote <chr>, Age <chr>, Location <chr>, Nature <chr>,
@@ -180,15 +185,15 @@ sdg_geoarea_data(24) %>%
   filter(str_detect(str_to_lower(series_description), "poverty")) %>%
   pull(series) %>%
   sdg_data(area_codes = 24, 1990, 2005)
-#> # A tibble: 16 x 23
-#>    Goal Target Indicator SeriesCode SeriesDescripti… GeoAreaCode GeoAreaName
-#>   <dbl> <chr>  <chr>     <chr>      <chr>                  <dbl> <chr>      
-#> 1     1 1.1    1.1.1     SI_POV_DA… Proportion of p…          24 Angola     
-#> 2     1 1.1    1.1.1     SI_POV_EM… Employed popula…          24 Angola     
-#> 3     1 1.1    1.1.1     SI_POV_EM… Employed popula…          24 Angola     
-#> 4     1 1.1    1.1.1     SI_POV_EM… Employed popula…          24 Angola     
-#> 5     1 1.1    1.1.1     SI_POV_EM… Employed popula…          24 Angola     
-#> # … with 11 more rows, and 16 more variables: TimePeriod <dbl>, Value <dbl>,
+#> # A tibble: 61 x 23
+#>    Goal Target Indicator SeriesCode  SeriesDescription   GeoAreaCode GeoAreaName
+#>   <dbl> <chr>  <chr>     <chr>       <chr>                     <dbl> <chr>      
+#> 1     1 1.1    1.1.1     SI_POV_EMP1 Employed populatio…          24 Angola     
+#> 2     1 1.1    1.1.1     SI_POV_EMP1 Employed populatio…          24 Angola     
+#> 3     1 1.1    1.1.1     SI_POV_EMP1 Employed populatio…          24 Angola     
+#> 4     1 1.1    1.1.1     SI_POV_EMP1 Employed populatio…          24 Angola     
+#> 5     1 1.1    1.1.1     SI_POV_EMP1 Employed populatio…          24 Angola     
+#> # … with 56 more rows, and 16 more variables: TimePeriod <dbl>, Value <dbl>,
 #> #   Time_Detail <dbl>, TimeCoverage <lgl>, UpperBound <lgl>, LowerBound <lgl>,
 #> #   BasePeriod <lgl>, Source <chr>, GeoInfoUrl <lgl>, FootNote <chr>,
 #> #   Age <chr>, Location <lgl>, Nature <chr>, Reporting_Type <chr>, Sex <chr>,

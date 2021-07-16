@@ -14,11 +14,10 @@ knitr::opts_chunk$set(
 options(tibble.print_min = 5, tibble.print_max = 5)
 ```
 
-# goalie <a href='https://github.com/caldwellst/goalie'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# goalie <a href='https://github.com/gpw13/goalie'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
-  [![Travis build status](https://travis-ci.com/caldwellst/goalie.svg?branch=master)](https://travis-ci.com/caldwellst/goalie)
-[![R-CMD-check](https://github.com/caldwellst/goalie/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/goalie/actions)
+[![R-CMD-check](https://github.com/gpw13/goalie/workflows/R-CMD-check/badge.svg)](https://github.com/gpw13/goalie/actions)
 <!-- badges: end -->
 
 ## Overview
@@ -36,52 +35,11 @@ or that have data for a specific SDG goal, target, indicator, or series.
 
 The interface is designed to be as simple as possible, only requiring input of the code of an indicator to extract it.
 However, at request, more detailed implementation of the SDG API's systems can be implemented. Please provide
-any requests through the [Github issues page](https://github.com/caldwellst/goalie/issues).
+any requests through the [Github issues page](https://github.com/gpw13/goalie/issues).
 
-goalie can be installed using `remotes::install_github("caldwellst/goalie")`
+goalie can be installed using `remotes::install_github("gpw13/goalie")`
 
 ## Usage
 
-To begin, we can use `gho_overview()` to begin to explore all data available in the GHO.
-
-```{r sdg_overview}
-library(goalie)
-
-sdg_overview()
+```{r child='vignettes/goalie_usage.rmd'}
 ```
-If we want the data for `SI_POV_DAY1`, we could now just quickly access the data frame using `sdg_data()`.
-```{r sdg_access_1}
-sdg_data("SI_POV_DAY1")
-```
-From here, standard methods of data manipulation (e.g. base R, the tidyverse) could be used to select variables, filter rows, and explore the data. However, we can also continue to explore other aspects of the SDG database. For instance, if we wanted to see the dimensions and attributes of `SI_POV_DAY1`, we can easily access that.
-```{r sdg_dimensions_1}
-sdg_dimensions(series = "SI_POV_DAY1")
-```
-```{r sdg_attributes_1}
-sdg_attributes(series = "SI_POV_DAY1")
-```
-Let's say we want to get data for a specific country, then we could look up the M49 code using the table available through the API.
-```{r gho_dim_vals_1}
-sdg_geoareas()
-```
-
-We can then even check what data is available for a specific country, say Angola.
-```{r angola}
-sdg_geoarea_data(24)
-```
-And we can get data from the SDG for multiple series in one call, with the output data frames already merged together.
-```{r sdg_data_2}
-sdg_data(c("SI_POV_DAY1", "SI_POV_EMP1", "SI_POV_NAHC"))
-```
-
-Of course, the reality is that it's likely easier for us to work outside the OData filtering framework and directly in R, so here's a final more complex example using `dplyr` and `stringr` alongside `goalie` to automatically download all indicators for Angola with the word "poverty" in the series description (case insensitive), for the years 1990 to 2005.
-```{r sdg_dplyr, message = FALSE}
-library(dplyr)
-library(stringr)
-
-sdg_geoarea_data(24) %>%
-  filter(str_detect(str_to_lower(series_description), "poverty")) %>%
-  pull(series) %>%
-  sdg_data(area_codes = 24, 1990, 2005)
-```
-And once we have that data, we can then filter, explore, and analyze the data with our standard R workflow, or even export the downloaded data to Excel or other analytical tools for further use.
