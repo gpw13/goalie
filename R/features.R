@@ -48,5 +48,5 @@ sdg_features <- function(type, goal = NULL, series = NULL) {
   } else {
     stop("Must provide either a goal or series code.", call. = FALSE)
   }
-  tidyr::unnest(resp, data = "codes")
+  tidyr::unnest(resp, cols = "codes")
 }
