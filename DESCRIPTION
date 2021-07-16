@@ -4,7 +4,7 @@ Title: R Client for the Sustainable Development Goals API
 Version: 0.1.0
 Authors@R: person("Seth", "Caldwell", email = "caldwellst@gmail.com", role = c("aut", "cre"))
 Description: Provides access to data stored in the Sustainable Development Goals (SDG) API.
-URL: https://unstats.un.org/SDGAPI/swagger/, https://github.com/caldwellst/goalie
+URL: https://unstats.un.org/SDGAPI/swagger/, https://github.com/gpw13/goalie
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
