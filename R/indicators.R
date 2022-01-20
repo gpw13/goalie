@@ -33,8 +33,10 @@ sdg_indicators <- function(goals = NULL, targets = NULL) {
 assert_indicators <- function(indicators, len = length(indicators)) {
   valid_indicators <- indicators %in% sdg_indicators()[["indicator"]]
   if (!all(valid_indicators)) {
-    stop(sprintf("%s are not valid indicator(s) in the UNSD SDG database. Use sdg_indicators() to get a data frame of all valid indicators.",
-                 paste(indicators[!valid_indicators], collapse = ", ")))
+    stop(sprintf(
+      "%s are not valid indicator(s) in the UNSD SDG database. Use sdg_indicators() to get a data frame of all valid indicators.",
+      paste(indicators[!valid_indicators], collapse = ", ")
+    ))
   } else if (len != length(indicators)) {
     stop(sprintf("indicators must be of length %s, not %s", len, length(indicators)), call. = FALSE)
   }

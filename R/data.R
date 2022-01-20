@@ -39,10 +39,12 @@ sdg_data <- function(series, area_codes = NULL, time_start = NULL, time_end = NU
   }
 
 
-  df <- sdg_POST("Series/DataCSV", as.list(c(series,
-                                              area_codes,
-                                              time_start,
-                                              time_end)))
+  df <- sdg_POST("Series/DataCSV", as.list(c(
+    series,
+    area_codes,
+    time_start,
+    time_end
+  )))
   suppressMessages(
     df <- readr::type_convert(df) %>%
       dplyr::filter(rowSums(is.na(.)) != ncol(.))

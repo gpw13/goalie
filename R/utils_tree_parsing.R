@@ -30,8 +30,10 @@ parse_data_tree <- function(df, returns) {
   }
 
   df <- dplyr::group_by(df, dplyr::across(c("goal":"target_description"))) %>%
-    dplyr::summarize("indicator_count" := dplyr::n(),
-                     "series_count" := sum(.data[["series_count"]])) %>%
+    dplyr::summarize(
+      "indicator_count" := dplyr::n(),
+      "series_count" := sum(.data[["series_count"]])
+    ) %>%
     dplyr::ungroup()
 
   if (returns == "targets") {
@@ -39,9 +41,11 @@ parse_data_tree <- function(df, returns) {
   }
 
   dplyr::group_by(df, dplyr::across(c("goal":"goal_description"))) %>%
-    dplyr::summarize("target_count" := dplyr::n(),
-                     "indicator_count" := sum(.data[["indicator_count"]]),
-                     "series_count" := sum(.data[["series_count"]])) %>%
+    dplyr::summarize(
+      "target_count" := dplyr::n(),
+      "indicator_count" := sum(.data[["indicator_count"]]),
+      "series_count" := sum(.data[["series_count"]])
+    ) %>%
     dplyr::ungroup()
 }
 
@@ -49,24 +53,30 @@ parse_data_tree <- function(df, returns) {
 assert_returns <- function(returns) {
   vals <- c("all", "series", "indicators", "targets", "goals")
   if (!(returns %in% vals)) {
-    stop(sprintf("returns should be a string equal to one of '%s'",
-                 paste(vals, collapse = ", ")), call. = FALSE)
+    stop(sprintf(
+      "returns should be a string equal to one of '%s'",
+      paste(vals, collapse = ", ")
+    ), call. = FALSE)
   }
 }
 
 #' @noRd
 rename_nested <- function(df, prefix) {
-  dplyr::rename_with(df,
-                     ~ paste0(prefix, "_", .x),
-                     dplyr::any_of(renamed_vars())) %>%
-    dplyr::select(where(~!is.logical(.x))) %>%
-    dplyr::rename({{prefix}} := .data[["code"]])
+  dplyr::rename_with(
+    df,
+    ~ paste0(prefix, "_", .x),
+    dplyr::any_of(renamed_vars())
+  ) %>%
+    dplyr::select(where(~ !is.logical(.x))) %>%
+    dplyr::rename({{ prefix }} := .data[["code"]])
 }
 
 #' @noRd
 select_vars <- function(df) {
-  dplyr::select(df,
-                dplyr::matches(paste(renamed_vars(), key_vars(), sep = "|", collapse = "|")))
+  dplyr::select(
+    df,
+    dplyr::matches(paste(renamed_vars(), key_vars(), sep = "|", collapse = "|"))
+  )
 }
 
 rename_select <- function(df, prefix) {
