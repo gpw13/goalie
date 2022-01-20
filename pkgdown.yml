@@ -1,0 +1,10 @@
+pandoc: 2.7.3
+pkgdown: 2.0.2
+pkgdown_sha: ~
+articles:
+  goalie_usage: goalie_usage.html
+last_built: 2022-01-20T08:28Z
+urls:
+  reference: https://gpw13.github.io/goalie/reference
+  article: https://gpw13.github.io/goalie/articles
+
