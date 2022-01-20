@@ -23,8 +23,10 @@ sdg_targets <- function(goals = 1:17) {
 assert_targets <- function(targets, len = length(targets)) {
   valid_targets <- targets %in% sdg_targets()[["target"]]
   if (!all(valid_targets)) {
-    stop(sprintf("%s are not valid target(s) in the UNSD SDG database. Use sdg_targets() to get a data frame of all valid targets.",
-                 paste(targets[!valid_targets], collapse = ", ")))
+    stop(sprintf(
+      "%s are not valid target(s) in the UNSD SDG database. Use sdg_targets() to get a data frame of all valid targets.",
+      paste(targets[!valid_targets], collapse = ", ")
+    ))
   } else if (len != length(targets)) {
     stop(sprintf("targets must be of length %s, not %s", len, length(targets)), call. = FALSE)
   }

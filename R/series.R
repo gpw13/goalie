@@ -9,9 +9,12 @@
 #' @export
 sdg_series <- function(all_releases = FALSE) {
   if (!is.logical(all_releases)) {
-    stop(sprintf("all_releases needs to be a single logical value, not %s.",
-                 all_releases),
-         call. = F)
+    stop(sprintf(
+      "all_releases needs to be a single logical value, not %s.",
+      all_releases
+    ),
+    call. = F
+    )
   } else if (all_releases) {
     query <- "allreleases=true"
   } else {
@@ -25,9 +28,12 @@ sdg_series <- function(all_releases = FALSE) {
 assert_series <- function(series, len = length(series)) {
   valid_series <- series %in% sdg_series()[["code"]]
   if (!all(valid_series)) {
-    stop(sprintf("%s are not valid series in the SDG database. Use sdg_series() to get a data frame of all valid series.",
-                 paste(series[!valid_series], collapse = ", ")),
-         call. = FALSE)
+    stop(sprintf(
+      "%s are not valid series in the SDG database. Use sdg_series() to get a data frame of all valid series.",
+      paste(series[!valid_series], collapse = ", ")
+    ),
+    call. = FALSE
+    )
   } else if (len != length(series)) {
     stop(sprintf("series must be of length %s, not %s", len, length(series)), call. = FALSE)
   }
